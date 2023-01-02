@@ -3,16 +3,35 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ckeditor/ckeditor5-adapter-ckfinder": "^35.3.2",
+    "@ckeditor/ckeditor5-build-classic": "^35.4.0",
+    "@ckeditor/ckeditor5-react": "^5.0.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.2.1",
+    "chart.js": "^4.1.1",
+    "cross-env": "^7.0.3",
+    "faker": "^6.6.6",
+    "hero-validate": "^1.1.8",
+    "jquery": "^3.6.3",
+    "jwt-decode": "^3.1.2",
+    "moment": "^2.29.4",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.1.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.41.2",
+    "react-moment": "^1.1.2",
+    "react-paginate": "^8.1.4",
+    "react-router-dom": "^6.4.4",
     "react-scripts": "5.0.1",
+    "rss-parser": "3.7.2",
+    "socket.io-client": "^4.5.4",
+    "uuid": "^9.0.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "cross-env BROWSER=none react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -34,5 +53,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.5.14"
   }
 }
