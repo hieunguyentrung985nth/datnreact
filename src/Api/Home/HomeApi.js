@@ -20,8 +20,11 @@ const HomeApi = {
     searchPost(search,page){
         const url ='home/search-post?search='+search+'&page='+page;
         return axiosClient.get(url);
-      }
-
+    },
+    morePost(category,page){
+        const url ='home/more-post';
+        return axiosClient.post(url, {categoryids:category, page:page});
+    }
 }
 
 export default HomeApi
