@@ -22,13 +22,17 @@ const Detail = () => {
   const [pager, setPager] = useState(null);
   const [page, setPage] = useState(1);
   const [postList, setPostList] = useState([]);
+
   useEffect(() => {
     console.log(slug);
 
     const fetchList = async () => {
       const res = await HomeApi.getDetail(slug);
       setMainPost(res.data.data.p);
+      setPostList([]);
+      setPager(null);
       console.log(res.data.data.p);
+      window.scrollTo(0, 0);
     };
     fetchList();
   }, [slug]);
@@ -36,7 +40,7 @@ const Detail = () => {
   useEffect(() => {
     const fetchList = async () => {
       document.body.style.backgroundImage = "";
-      const res = await HomeApi.morePost(mainPost.categories[0].categoryid, page);
+      const res = await HomeApi.morePost(mainPost.categories[0].id, page);
       setPostList((prev) => [...prev, res.data.data[0]]);
       setPager(res.data.pager);
       console.log(res.data);
@@ -131,12 +135,12 @@ const Detail = () => {
           <div className="container" data-animate-effect="fadeIn" id="lq">
             <h2>Tin liên quan</h2>
             {postList && postList.map((post, index)=>(
- <div key={post.id} className="row pb-4">
+ <div key={post?.id} className="row pb-4">
  <div className="col-md-5">
    <div className="fh5co_hover_news_img">
      <div className="fh5co_news_img">
        <img
-         src={"https://localhost:44354/contents/" + post.banner}
+         src={"https://localhost:44354/contents/" + post?.banner}
          alt=""
        />
      </div>
@@ -145,20 +149,20 @@ const Detail = () => {
  </div>
  <div className="col-md-7">
  <Link
-                        to={"/post/" + post.slug}
+                        to={"/post/" + post?.slug}
                         className="fh5co_magna py-2"
                         style={{ display: "block" }}
                       >
                         {" "}
-                        {post.title}{" "}
+                        {post?.title}{" "}
                       </Link>{" "}
                       <a href="single.html" className="fh5co_mini_time py-3">
-                        {transDate(post.createdAt)} -{" "}
-                        <i className="fa fa-eye">&nbsp;{post.view}</i>{" "}
+                        {transDate(post?.createdAt)} -{" "}
+                        <i className="fa fa-eye">&nbsp;{post?.view}</i>{" "}
                       </a>
                       <div
                         className="fh5co_consectetur"
-                        dangerouslySetInnerHTML={{ __html: post.description }}
+                        dangerouslySetInnerHTML={{ __html: post?.description }}
                       ></div>
  </div>
 </div>

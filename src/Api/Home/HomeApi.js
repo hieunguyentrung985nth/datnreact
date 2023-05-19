@@ -24,6 +24,14 @@ const HomeApi = {
     morePost(category,page){
         const url ='home/more-post';
         return axiosClient.post(url, {categoryids:category, page:page});
+    },
+    getAllCategories(){
+        const url = 'categories/all-categories';
+        return axiosClient.get(url);
+    },
+    getCategoryPosts(slug,page){
+        const url = 'home/category-posts?slug='+slug+'&page='+page;
+        return axiosClient.get(url);
     }
 }
 

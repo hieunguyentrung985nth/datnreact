@@ -25,6 +25,7 @@ import ViewCategory from './components/Manager/ViewCategory';
 import Search from './components/Home/Search';
 import ViewStaff from './components/Admin/ViewStaff';
 import Register from './components/Auth/Register';
+import Category from './components/Home/Category';
 
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
           <Route path="/search" element={<Search />} />
           <Route path="/post/:slug" element={<Detail />} />
           <Route path="/rssfeed" element={<RssFeed />} />
+          <Route path="/category/:slug" element={<Category />} />
           <Route path="*" element={<NotFound />} />
         </Route>
         <Route path="/login" element={<Login />} />

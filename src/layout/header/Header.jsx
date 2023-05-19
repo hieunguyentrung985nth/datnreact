@@ -5,13 +5,26 @@ import { createSearchParams, Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import AuthApi from "../../Api/Auth/Auth";
+import HomeApi from "../../Api/Home/HomeApi";
+
+
 const Header = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
+  const [categories, setCategories] = useState([]);
   useEffect(()=>{
     setUser(AuthApi.getCurrentUser() ? AuthApi.getCurrentUser() : null);
     console.log(user);
   },[]);
+
+  useEffect(() => {
+    const fetchList = async () => {
+      const res = await HomeApi.getAllCategories();
+      setCategories(res.data.data);
+      console.log(res.data.data);
+    };
+    fetchList();
+  }, []);
 
   const logout = ()=>{
     AuthApi.logout();
@@ -129,9 +142,13 @@ const Header = () => {
                         <a className="nav-link dropdown-toggle" href="#" id="dropdownMenuButton2" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">Danh Mục <span className="sr-only">(current)</span></a>
                         <div className="dropdown-menu" aria-labelledby="dropdownMenuLink_1">
-                            <a className="dropdown-item" href="#">Esport</a>
-                            <a className="dropdown-item" href="#">PC/CONSOLE</a>
-                            <a className="dropdown-item" href="#">Mobile</a>
+                          {categories && categories.map((category)=>(
+                            <Link to={"/category/" + category.slug} className="dropdown-item">
+                              {category.title}
+                            </Link>
+                          ))}
+                            {/* <a className="dropdown-item" href="#">PC/CONSOLE</a>
+                            <a className="dropdown-item" href="#">Mobile</a> */}
                         </div>
                     </li>
                     <li className="nav-item">
